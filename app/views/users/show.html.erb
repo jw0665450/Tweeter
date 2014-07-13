@@ -1,0 +1,21 @@
+<p><%= @user.fullname %></p>
+<p><%= @user.handle %></p>
+<p><%= @user.location %></p>
+<p><%= @user.url %></p>
+<p><%= @user.bio %></p>
+
+<% if current_user.following?(@user) %>
+	<%= render "unfollow" %>
+<% else %>
+	<%= render "follow" %>
+<% end %>
+
+<h3>Recent Tweets</h3>
+<h4><%= @user.posts.count %> tweets total</h4>
+
+<% @posts.each do |post| %>
+	<p>
+		<%= post.content %>
+		Created at <%= post.created_at.strftime("%d/%m/%y") %>
+	</p>
+<% end %>
